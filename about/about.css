@@ -1,0 +1,33 @@
+@import url('http://fonts.googleapis.com/css?family=Rubik|Archivo|Lora');
+
+.jumbotron
+{
+	font-family: Rubik !important;
+	font-weight: bold !important;
+	width:100%;
+	background-image: radial-gradient(circle, #ffffff, #fdfcfd, #fbfafa, #f9f7f7, #f7f4f4, #f2efef, #edeaea, #e8e5e5, #dfdddd, #d7d5d5, #cecdcd, #c6c5c5);
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-transform: uppercase;
+}
+
+img
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10%;
+}
+
+h3
+{
+	text-align: center;
+	font-family: Archivo !important;
+	font-weight: bold !important;
+}
+
+h5
+{
+	font-size: 15px !important;
+	font-weight: bold !important;		
+}
