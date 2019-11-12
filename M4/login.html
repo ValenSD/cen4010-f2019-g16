@@ -1,3 +1,5 @@
+<?php include('login_backend.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +29,8 @@
 						<h1>Login</h1>
 				 </div>
 			</div>
-            <form action="" method="post" name="login">
+            <form action="login.php" method="post" name="login">
+              <input type="hidden" name="login_user" value="login_user">
                 <div class="form-group">
                     <label>Username</label>
                     <input type="username" name="username"  class="form-control" id="username" placeholder="Enter Username">

@@ -2,7 +2,7 @@
 
 //get ip address
 $ip_address = $_SERVER['REMOTE_ADDR'];
-$LOCAL = 0;
+$LOCAL = 1;
 
 if($LOCAL) //running on my XAMPP server
 {
@@ -16,7 +16,7 @@ if($LOCAL) //running on my XAMPP server
   $dbuser = 'root';   // Needs to be changed to reflect your LAMP server credentials
   $dbpass = ''; // Needs to be changed to reflect your LAMP server credentials
 
-  $dbcon = mysqli_connect('localhost', 'root', '', 'mydb');
+  $dbcon = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
   if (mysqli_connect_errno())
   {
