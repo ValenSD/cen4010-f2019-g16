@@ -1,0 +1,1 @@
+<!-- php and sql to verify user login or insert new one.  if new user, make sure username, email, etc don't already exist-->
