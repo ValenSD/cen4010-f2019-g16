@@ -32,8 +32,8 @@
             <form action="login.php" method="post" name="login">
               <input type="hidden" name="login_user" value="login_user">
                 <div class="form-group">
-                    <label>Username (email)</label>
-                    <input type="username" name="username"  class="form-control" id="username" placeholder="Enter Email">
+                    <label>Email address</label>
+                    <input type="email" name="email"  class="form-control" id="email" placeholder="Enter Email">
                 </div>
                 <div class="form-group">
                     <label>Password</label>

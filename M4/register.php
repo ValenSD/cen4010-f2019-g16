@@ -37,11 +37,11 @@
                 </div>
                 <div class="form-group">
                     <label>First name</label>
-                    <input type="First Name" name="firstname"  class="form-control" id="username" placeholder="Enter First Name" value="<?php echo $firstname; ?>">
+                    <input type="First Name" name="firstname"  class="form-control" id="firstname" placeholder="Enter First Name" value="<?php echo $firstname; ?>">
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="First Name" name="lastname"  class="form-control" id="username" placeholder="Enter Last Name" value="<?php echo $lastname; ?>">
+                    <input type="Last Name" name="lastname"  class="form-control" id="lastname" placeholder="Enter Last Name" value="<?php echo $lastname; ?>">
                 </div>
                 <div class="form-group">
                     <label>Password</label>

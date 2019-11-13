@@ -1,31 +1,23 @@
 <?php
-if(isset($_POST['page_form']))
-{
-    switch ($_POST['page_form'])
-    {
-    case "1": // form 1 specific handling
-        echo "form 1 submitted<br>";
-        break;
-    case "2": // form 2 specific handling
-        echo "form 2 submitted<br>";
-       break;
-    default:
-        die ("something's not right there");
-    }
-
-    // common handling
-    foreach ($_POST as $var => $val) echo "$var => $val<br>";
+require_once "server_vars.php";
+$sqlimgpath = "CREATE TABLE IF NOT EXISTS `POSTSIMGPATH` (
+  `idPOSTSIMGPATH` INT NOT NULL AUTO_INCREMENT,
+  `POSTSIMGPATHpath` VARCHAR(255) NULL,
+  `POSTSIMGPATHcreatedAt` TIMESTAMP NULL,
+  `POSTSIMGPATHupdatedAt` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+  `POSTS_idPOSTS` INT NOT NULL,
+  PRIMARY KEY (`idPOSTSIMGPATH`),
+  INDEX `fk_POSTSIMGPATH_POSTS1_idx` (`POSTS_idPOSTS` ASC),
+  CONSTRAINT `fk_POSTSIMGPATH_POSTS1`
+    FOREIGN KEY (`POSTS_idPOSTS`)
+    REFERENCES `POSTS` (`idPOSTS`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;";
+if($dbcon->query($sqlimgpath)){
+  echo "POSTSIMGPATH table created";
+}else {
+  echo("Error description: " . mysqli_error($dbcon));
 }
+
 ?>
-
-<form method="post">
-<input type="text" name="test">
-<input type="submit" name="submit">
-<input type="hidden" name="page_form" value="1">
-</form>
-
-<form method="post">
-<input type="text" name="test">
-<input type="submit" name="submit">
-<input type="hidden" name="page_form" value="2">
-</form>

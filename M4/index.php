@@ -35,6 +35,7 @@ echo '</pre>';
 	  <li><a href="">Search Snapshot</a></li>
 	  <li><a href="">Update Snapshot</a></li>
 	  <li><a href="">Edit Account</a></li>
+    <li><a href="logout.php">Logout</a></li>
 	</ul>
 	<div class="container">
 		<div class="col-lg mx-auto">
@@ -44,15 +45,20 @@ echo '</pre>';
 				</div>
 			</div>
 		</div>
-<!-- <?php
+<!--populate with posts table when defined
+ <?php
 $sql = "select * from USERS";
 $res = $dbcon->query($sql);
 
-while ($row = $res->fetch_assoc()) {
-    print_r($row);
+echo "<table>"; // print table data from posts table
+
+while($row = mysqli_fetch_array($res)){   //Creates a loop to loop through results
+echo "<tr><td>" . $row['tbd'] . "</td><td>" . $row['tbd'] . "</td></tr>";  //$row['index'] the index here is a field name
 }
+
+echo "</table>"; //Close the table in HTML
 ?> -->
-        <a href="postsnapshot.html">Post!<a>
+
 	</div>
 </body>
 </html>

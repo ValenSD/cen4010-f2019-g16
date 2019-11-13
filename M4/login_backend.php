@@ -40,7 +40,7 @@ $stmnt = $dbcon->prepare("CREATE TABLE IF NOT EXISTS `USERS` (
   PRIMARY KEY (`idUSERS`))
 ENGINE = InnoDB;");
 //try to create table
-if($stmnt->execute()){}else{echo "<br> table create error";}
+if($stmnt->execute()){}else{echo "<br> user table create error";}
 
 //insert user
 $timestamp = strftime("%Y%m%d%H%M%S");
@@ -49,7 +49,7 @@ if (count($error_array) == 0){
   `USERSremember_token` , `USERScreatedAt` ,`USERSupdatedAt`)
   VALUES (NULL , '$firstname', '$lastname', '$email', '$password', NULL , $timestamp, NULL)");
 if ($stmnt->execute()){} else {echo "Insert User Error";}
-
+$dbcon->close();
   $_SESSION['email'] = $email;
   $_SESSION['firsntame']=$firstname;
   $_SESSION['lastname']=$lastname;
@@ -65,8 +65,8 @@ echo '</pre>';
 
 //login user
 if (isset($_POST['login_user'])){
-  $username = $_POST["username"];
-  $email = $_POST["username"];
+  $username = $_POST["email"];
+  $email = $_POST["email"];
   $password = $_POST["password"];
 
 //build sql to verify user
@@ -74,6 +74,8 @@ $sql = "SELECT USERS.idUSERS FROM USERS WHERE USERS.USERSemail LIKE '$email' AND
 //execute SQL
 $result = $dbcon->query($sql);
 //see if we matched any records
+  $row_count = mysqli_num_rows($result);
+  echo "$row_count";
   if (mysqli_num_rows($result) == 1){
     $_SESSION['username'] = $email;
     $_SESSION['email'] = $email;
@@ -81,6 +83,9 @@ $result = $dbcon->query($sql);
     header('location: index.php');
   }else{array_push($error_array, "Wrong username or password");
   }
+  echo '<pre>';
+  var_dump($result);
+  echo '</pre>';
 
 }
 
@@ -89,9 +94,7 @@ echo '<pre>';
 var_dump($_POST);
 echo '</pre>';
 
-  echo '<pre>';
-var_dump($result);
-echo '</pre>';
+
 
 
 
