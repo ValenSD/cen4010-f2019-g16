@@ -5,7 +5,6 @@
  */
 body {
   font-family: "Lato", sans-serif;
-  padding-top: 56px;
 }
 
 .carousel-item {
@@ -21,13 +20,49 @@ body {
 .portfolio-item {
   margin-bottom: 30px;
 }
+/* TOP MENU */
+.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
 
-/*! LOGIN & REGISTER PAGE */
+.topnav li {
+	float: left;
+}
 
- body {
-	padding-top:4.2rem;
-	padding-bottom:4.2rem;
-	background:rgba(0, 0, 0, 0.76);
+.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav li a:hover:not(.active) {
+	background-color: #111;
+}
+
+.topnav li a.active {
+	background-color: #007BFF;
+}
+
+.topnav li.right {
+	float: right;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav li.right, 
+  .topnav li {
+	  float: none;
+	  }
+}
+
+/* LOGIN & REGISTER PAGE */
+.container {
+	padding-top: 50px;
 }
 a {
     text-decoration:none !important;
@@ -45,7 +80,7 @@ h1,h2,h3{
 	flex-direction: column;
 	width: 100%;
 	pointer-events: auto;
-	background-color: #fff;
+	background-color: #f5f5f5;
 	background-clip: padding-box;
 	border: 1px solid rgba(0,0,0,.2);
 	border-radius: 1.1rem;
@@ -61,7 +96,7 @@ h1,h2,h3{
         
 .login-or {
 	position: relative;
-    color: #aaa;
+    color: #000;
     margin-top: 10px;
     margin-bottom: 10px;
     padding-top: 10px;
@@ -73,7 +108,7 @@ h1,h2,h3{
     left: 50%;
     top: -2px;
     margin-left: -25px;
-    background-color: #fff;
+    background-color: #f5f5f5;
     width: 50px;
     text-align: center;
     }
@@ -82,3 +117,4 @@ h1,h2,h3{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     }
+/* WELCOME PAGE */
