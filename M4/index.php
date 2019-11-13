@@ -19,7 +19,7 @@ echo '</pre>';
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Campus Snapshot</title>
+  <title>Campus Snapshots</title>
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,12 +29,21 @@ echo '</pre>';
 </head>
 
 <body>
-  <div class="container">
-    <div class="col-md-5 mx-auto">
-		<div class="myform form ">
+	<ul class="topnav">
+	  <li><a class="active" href="index.php">Main Page</a></li>
+	  <li><a href="PostSnapshot.html">Post Snapshot</a></li>
+	  <li><a href="">Search Snapshot</a></li>
+	  <li><a href="">Update Snapshot</a></li>
+	  <li><a href="">Edit Account</a></li>
+	</ul>
+	<div class="container">
+		<div class="col-lg mx-auto">
 			<div class="logo mb-3">
-				 <div class="col-md-12 text-center">
-						<h1>Welcome</h1>
+				<div class="col-lg text-center">
+					<h1>Welcome to Campus Snapshots</h1>
+				</div>
+			</div>
+		</div>
 <!-- <?php
 $sql = "select * from USERS";
 $res = $dbcon->query($sql);
@@ -43,5 +52,7 @@ while ($row = $res->fetch_assoc()) {
     print_r($row);
 }
 ?> -->
-            <a href="postsnapshot.html">Post!<a>
-          </div>
+        <a href="postsnapshot.html">Post!<a>
+	</div>
+</body>
+</html>
