@@ -51,10 +51,10 @@ if (count($error_array) == 0){
 if ($stmnt->execute()){} else {echo "Insert User Error";}
 $dbcon->close();
   $_SESSION['email'] = $email;
-  $_SESSION['firsntame']=$firstname;
+  $_SESSION['firstname']=$firstname;
   $_SESSION['lastname']=$lastname;
   $_SESSION['success'] = "Success";
-
+  header('location: index.php');
   //troubleshooting...remove later
   echo '<pre>';
 var_dump($_SESSION);
@@ -70,32 +70,44 @@ if (isset($_POST['login_user'])){
   $password = $_POST["password"];
 
 //build sql to verify user
-$sql = "SELECT USERS.idUSERS FROM USERS WHERE USERS.USERSemail LIKE '$email' AND USERS.USERSpassword = '$password'";
-//execute SQL
-$result = $dbcon->query($sql);
-//see if we matched any records
+  $sql = "SELECT USERS.idUSERS FROM USERS WHERE USERS.USERSemail LIKE '$email' AND USERS.USERSpassword = '$password'";
+  //execute SQL
+  $result = $dbcon->query($sql);
+
+  //see if we matched any records
   $row_count = mysqli_num_rows($result);
-  echo "$row_count";
+  echo "row count: ", $row_count;
+  $row = mysqli_fetch_assoc($result);
   if (mysqli_num_rows($result) == 1){
+    //authenticated user, start new session
+    session_start();
+    //store user data in session variables
+    $_SESSION['success'] = "Thanks for logging in";
     $_SESSION['username'] = $email;
     $_SESSION['email'] = $email;
-    $_SESSION['success'] = "Thanks for logging in";
+    $_SESSION['userid'] = $row['idUSERS'];
+    //send to main page
     header('location: index.php');
-  }else{array_push($error_array, "Wrong username or password");
+  }else{
+    echo "issue with login";
+    array_push($error_array, "Wrong username or password");
   }
+
+  //troubleshooting, remove later
   echo '<pre>';
   var_dump($result);
   echo '</pre>';
 
-}
+} //end login user 'if'
 
 //troubleshooting, remove later
 echo '<pre>';
 var_dump($_POST);
 echo '</pre>';
 
-
-
+echo '<pre>', "session: ";
+var_dump($_SESSION);
+echo '</pre>';
 
 
 

@@ -1,0 +1,15 @@
+Luis ValensuelaToday at 9:21 AM
+id_posts is the id that you get from table POSTS. That's is why you need to first insert in POSTS, get the id_posts and use across the other tables;
+idUSERS is the id that you get after inserting in the table USERS
+
+the ids that we are using are the primary key of the tables that are autoincrement fields. 
+
+For example, to insert a new post you need:
+
+1. Insert int table POSTS. You already have the idUSERS, because when you do the login, we can get that value from the table USERS.
+2. get the idPOSTS and save it in a php variable. This is the unique id of the post and will be used in the other tables. 
+3. Insert the message that the user has posted in the table POSTMESSAGES.  You will need the idPOST from step 2. 
+4. Insert the image information into the table POSTIMGPATH. Again you will need the idPOSTS FROM step 2. 
+
+Now you have all the values from the user post in the database. 
+To query the user post, you need the idUSERS. With it you do a query in POSTS looking for the idUSERS. From there you get the idPOSTS. With it, you can get the message and the path information of the uploaded image. 

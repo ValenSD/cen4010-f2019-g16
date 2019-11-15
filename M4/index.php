@@ -5,9 +5,9 @@ if (!isset($_SESSION['username'])){
   $_SESSION['info'] = "Please Log in first";
   header('location:login.php');
   }
-  echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
+//   echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
 ?>
 
 <html lang="en">
@@ -22,12 +22,12 @@ echo '</pre>';
 	  <title>Campus Snapshots</title>
 	  <!-- Bootstrap core CSS -->
 	  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	  
+
 	  <!-- Custom styles for this template -->
 	  <link href="bootstrap/css/campussnapshot.css" rel="stylesheet">
 
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	  
+
 	</head>
 
 
@@ -61,7 +61,7 @@ echo '</pre>';
 	}
 
 	echo "</table>"; //Close the table in HTML
-	?> 
+	?>
 	-->
 		</div>
 	</body>
