@@ -27,16 +27,6 @@ if (!isset($_SESSION['username'])) {
 	<link href="bootstrap/css/campussnapshot.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<style>
-		table,
-		th,
-		td {
-			border: 1px solid black;
-		}
-	</style>
-
-
 </head>
 
 
@@ -49,15 +39,13 @@ if (!isset($_SESSION['username'])) {
 		<li><a href="EditAccount.php">Edit Account</a></li>
 		<li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
 	</ul>
-	<div class="container">
-		<div class="col-lg mx-auto">
-			<div class="logo mb-3">
-				<div class="col-lg text-center">
-					<h1>Welcome to Campus Snapshots</h1>
-					<h5>Current User: <?php echo $_SESSION['username'] ?></h5>
-				</div>
-			</div>
+	<div class="jumbotron jumbotron-fluid" style="background: url('bootstrap/images/campus.jpg') no-repeat; background-size: cover; color: #ffffff;">
+		<div class="container" >
+			<h1 class="display-4">Welcome to Campus Snapshots</h1>
+			<h5 class="lead">Current User: <?php echo $_SESSION['username'] ?></h5>
 		</div>
+	</div>
+	<div class="container">
 		<!--populate with posts table when defined -->
 		<?php
 		$sql = "SELECT USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, POSTMESSAGES.POSTMESSAGESdesc, POSTMESSAGES.POSTMESSAGESmsg, POSTSIMGPATH.POSTSIMGPATHpath
@@ -69,18 +57,26 @@ if (!isset($_SESSION['username'])) {
 		LIMIT 10";
 		$res = $dbcon->query($sql);
 
-		echo "<table>"; // print table data from posts table
-
-		while ($row = mysqli_fetch_array($res)) {   //Creates a loop to loop through results
-			echo
-				"<tr><td>" . $row['USERSfirstname']
-					. " " . $row['USERSlastname'] . "</td><td>"
-					. $row['POSTScreatedAt'] . "</td><td>"
-					. $row['POSTMESSAGESdesc'] . "</td><td>"
-					. $row['POSTMESSAGESmsg'] . "</td><td>
-					<img src=' " . $target_dir . "/" . $row['POSTSIMGPATHpath'] . " ' height='200' width='200'></td></tr>";
-		}
-
+		echo "<table class= \"table table-striped table-bordered\">"; // print table data from posts table
+			echo "<thead class= \"thead-dark\">
+					<tr>
+					<th>Reporter</th>
+					<th>Date Created</th>
+					<th>Subject</th>
+					<th>Image</th>
+					</tr>
+				  </thead>";
+			echo "<tbody>";
+			while ($row = mysqli_fetch_array($res)) {   //Creates a loop to loop through results
+				echo
+					"<tr><td>" . $row['USERSfirstname']
+						. " " . $row['USERSlastname'] . "</td><td>"
+						. $row['POSTScreatedAt'] . "</td><td>"
+						. $row['POSTMESSAGESdesc'] . "</td><td>"
+						. $row['POSTMESSAGESmsg'] . "</td><td>
+						<img src=' " . $target_dir . "/" . $row['POSTSIMGPATHpath'] . " ' height='200' width='200'></td></tr>";
+			}
+		echo "</tbody>";
 		echo "</table>"; //Close the table in HTML
 		?>
 	</div>
