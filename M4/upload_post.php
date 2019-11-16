@@ -1,27 +1,29 @@
 <?php
 session_start();
 require_once './server_vars.php';
-if (!isset($_SESSION['username'])){
+if (!isset($_SESSION['username'])) {
   $_SESSION['info'] = "Please Log in first";
   header('location:login.php');
 }
-if(($_POST)){}else{header('location: index.php');}
+if (($_POST)) { } else {
+  header('location: index.php');
+}
 //check if image is included in POST
-if($_FILES['fileToUpload']['name']!=""){
+if ($_FILES['fileToUpload']['name'] != "") {
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
   // Check if image file is a actual image or fake image
-    if (isset($_FILES['upload'])){
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false){
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
+  if (isset($_FILES['upload'])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if ($check !== false) {
+      echo "File is an image - " . $check["mime"] . ".";
+      $uploadOk = 1;
+    } else {
+      echo "File is not an image.";
+      $uploadOk = 0;
     }
+  }
   //Move the file over.
   $temp = explode(".", $_FILES["fileToUpload"]["name"]);
   //create ticket number
@@ -29,10 +31,10 @@ if($_FILES['fileToUpload']['name']!=""){
   //create timestamp filename
   $Newfilename = strftime("%Y%m%d%H%M%S") . '.' . end($temp);
 
-  if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'],
-      "$target_dir/" .$Newfilename))
-      { }
-  else {
+  if (move_uploaded_file(
+    $_FILES['fileToUpload']['tmp_name'],
+    "$target_dir/" . $Newfilename
+  )) { } else {
     echo "File not accepted!";
   }
 } //end file empty IF
@@ -51,8 +53,8 @@ $sqlposts = "CREATE TABLE IF NOT EXISTS `POSTS` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;";
-if($dbcon->query($sqlposts)){}else {
-  echo("Error description: " . mysqli_error($dbcon));
+if ($dbcon->query($sqlposts)) { } else {
+  echo ("Error description: " . mysqli_error($dbcon));
 }
 //$dbcon->close();
 
@@ -71,8 +73,8 @@ $sqlmsgs = "CREATE TABLE IF NOT EXISTS `POSTMESSAGES` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB";
-if($dbcon->query($sqlmsgs)){}else {
-  echo("Error description: " . mysqli_error($dbcon));
+if ($dbcon->query($sqlmsgs)) { } else {
+  echo ("Error description: " . mysqli_error($dbcon));
 }
 //mysqli_free_result($sqlmsgs);
 
@@ -91,54 +93,76 @@ $sqlimgpath = "CREATE TABLE IF NOT EXISTS `POSTSIMGPATH` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;";
-if($dbcon->query($sqlimgpath)){}else {
-  echo("Error description: " . mysqli_error($dbcon));
+if ($dbcon->query($sqlimgpath)) { } else {
+  echo ("Error description: " . mysqli_error($dbcon));
 }
 //define form-provided variables
 $dateposted = $_POST["dateposted"];
 $subject = $_POST["subject"];
 $descripton = $_POST["description"];
 
+//insert into POSTS table to get the last inserted ID;
+$sqlInsertPost = "
+INSERT INTO `cen4010fal19_g16`.`POSTS` (
+  `idPOSTS` ,
+  `POSTScreatedAt` ,
+  `POSTSupdatedAt` ,
+  `USERS_idUSERS`
+  )
+  VALUES (
+  NULL , " . $dateposted . ", NULL , '1'
+  )";
 
-//get the next post id
-$sqlgetnextpostid = "SELECT `auto_increment`
-FROM INFORMATION_SCHEMA.TABLES
-WHERE table_name = 'POSTS'
-LIMIT 0 , 30";
-if($res = $dbcon->query($sqlgetnextpostid)){}else{echo("Error description: " . mysqli_error($dbcon));}
-while($row = mysqli_fetch_array($res)){
-  $nextpostid = $row['auto_increment'];
-echo "next id: ", $nextpostid;
+if ($res = $dbcon->query($sqlInsertPost)) { } else {
+  echo ("Error description: " . mysqli_error($dbcon));
 }
+
+// GET THE LAST INSERTED ID FROM POSTS
+$sqlGetLastPOSTSInsertId = "
+SELECT idPOSTS
+FROM `POSTS`
+ORDER BY idPOSTS DESC
+LIMIT 1";
+
+if ($res = $dbcon->query($sqlGetLastPOSTSInsertId)) {
+  $row = mysqli_fetch_array($res);
+  $lastInsertedPOSTSId = $row['idPOSTS'];
+} else {
+  echo ("Error description: " . mysqli_error($dbcon));
+}
+
+
+// insert the imagem path using the POSTS id from the previous query
+$sqlInsertImgPath = "
+INSERT INTO `cen4010fal19_g16`.`POSTSIMGPATH` (
+`idPOSTSIMGPATH` ,
+`POSTSIMGPATHpath` ,
+`POSTSIMGPATHcreatedAt` ,
+`POSTSIMGPATHupdatedAt` ,
+`POSTS_idPOSTS`
+)
+VALUES (
+NULL , '$Newfilename', '$dateposted', NULL , '$lastInsertedPOSTSId'
+)";
+
+echo "____ " . $sqlInsertImgPath;
+
+if ($res = $dbcon->query($sqlInsertImgPath)) { } else {
+  echo ("Error description: " . mysqli_error($dbcon));
+}
+
 //build insert sql
 $sqlinesertmessage = "INSERT INTO `POSTMESSAGES` (`idPOSTMESSAGES` ,`POSTMESSAGESmsg`, `POSTMESSAGEScreatedAt`, `POSTMESSAGESupdatedAt`,
-`POSTS_idPOSTS`) VALUES (NULL, '$subject', '$dateposted', NULL, '$nextpostid')";
-if($res = $dbcon->query($sqlinesertmessage)){
-  }
-  else{
-    echo("Error description: " . mysqli_error($dbcon));
-  }
-//build sql insert statment
-  //echo "File is an image - " . $check["mime"] . ".";
-//$sqltesttable = "INSERT INTO TESTTABLE (postnum , dateposted, subject, filename) VALUES ('$Postnumber', '$dateposted', '$subject', '$Newfilename')";
-//execute insert post statment
-// if ($dbcon->query($sqltesttable)){
-//     echo " <br/>Ticket number $Postnumber recorded! <br> <br>";
-//
-// }
-// else
-// {
-//     echo "<br> error ";
-//     exit();
-// }
+`POSTS_idPOSTS`) VALUES (NULL, '$subject', '$dateposted', NULL, '$lastInsertedPOSTSId')";
+
+echo $sqlinesertmessage;
+if ($res = $dbcon->query($sqlinesertmessage)) { } else {
+  echo ("Error description: " . mysqli_error($dbcon));
+}
+
 
 //display image to user
-echo "<br><img src=' ". $target_dir . "/" . $Newfilename . " ' height='200' width='200'>";
-
-
-
-
-
+echo "<br><img src=' " . $target_dir . "/" . $Newfilename . " ' height='200' width='200'>";
 
 //troubleshooting
 echo "<br>target dir: $target_dir <br> target file: $target_file";
@@ -148,10 +172,6 @@ echo '</pre>';
 var_dump($_SESSION);
 echo '</pre>';
 echo "IP ADDRESS: $ip_address<br>";
-echo "date: ". $_POST['dateposted'] ." ";
+echo "date: " . $_POST['dateposted'] . " ";
 //echo "subject: $_POST['subject']";
 //echo $_SERVER["HTTP_FORWARDED_FOR"];
-
-
-
-?>
