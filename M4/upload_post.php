@@ -110,8 +110,10 @@ INSERT INTO `cen4010fal19_g16`.`POSTS` (
   `USERS_idUSERS`
   )
   VALUES (
-  NULL , " . $dateposted . ", NULL , '1'
+  NULL , '$dateposted', NULL , '1'
   )";
+
+// echo "<p>" . $sqlInsertPost;
 
 if ($res = $dbcon->query($sqlInsertPost)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
@@ -123,6 +125,8 @@ SELECT idPOSTS
 FROM `POSTS`
 ORDER BY idPOSTS DESC
 LIMIT 1";
+
+// echo "<p>" . $sqlGetLastPOSTSInsertId;
 
 if ($res = $dbcon->query($sqlGetLastPOSTSInsertId)) {
   $row = mysqli_fetch_array($res);
@@ -145,7 +149,7 @@ VALUES (
 NULL , '$Newfilename', '$dateposted', NULL , '$lastInsertedPOSTSId'
 )";
 
-echo "____ " . $sqlInsertImgPath;
+// echo "<p>" . $sqlInsertImgPath;
 
 if ($res = $dbcon->query($sqlInsertImgPath)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
@@ -155,7 +159,8 @@ if ($res = $dbcon->query($sqlInsertImgPath)) { } else {
 $sqlinesertmessage = "INSERT INTO `POSTMESSAGES` (`idPOSTMESSAGES` ,`POSTMESSAGESmsg`, `POSTMESSAGEScreatedAt`, `POSTMESSAGESupdatedAt`,
 `POSTS_idPOSTS`) VALUES (NULL, '$subject', '$dateposted', NULL, '$lastInsertedPOSTSId')";
 
-echo $sqlinesertmessage;
+// echo "<p>" . $sqlinesertmessage;
+
 if ($res = $dbcon->query($sqlinesertmessage)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
 }
