@@ -8,6 +8,8 @@ if (!isset($_SESSION['username'])) {
 if (($_POST)) { } else {
   header('location: index.php');
 }
+
+$error_array   = array();
 //check if image is included in POST
 if ($_FILES['fileToUpload']['name'] != "") {
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -36,6 +38,7 @@ if ($_FILES['fileToUpload']['name'] != "") {
     "$target_dir/" . $Newfilename
   )) { } else {
     echo "File not accepted!";
+    array_push($error_array, "File not accepted!");
   }
 } //end file empty IF
 //create tables if necessary
@@ -55,6 +58,7 @@ $sqlposts = "CREATE TABLE IF NOT EXISTS `POSTS` (
 ENGINE = InnoDB;";
 if ($dbcon->query($sqlposts)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 //$dbcon->close();
 
@@ -75,6 +79,7 @@ $sqlmsgs = "CREATE TABLE IF NOT EXISTS `POSTMESSAGES` (
 ENGINE = InnoDB";
 if ($dbcon->query($sqlmsgs)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 //mysqli_free_result($sqlmsgs);
 
@@ -95,6 +100,7 @@ $sqlimgpath = "CREATE TABLE IF NOT EXISTS `POSTSIMGPATH` (
 ENGINE = InnoDB;";
 if ($dbcon->query($sqlimgpath)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 //define form-provided variables
 $dateposted = $_POST["dateposted"];
@@ -118,6 +124,7 @@ INSERT INTO `cen4010fal19_g16`.`POSTS` (
 
 if ($res = $dbcon->query($sqlInsertPost)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 
 // GET THE LAST INSERTED ID FROM POSTS
@@ -154,6 +161,7 @@ NULL , '$Newfilename', '$dateposted', NULL , '$lastInsertedPOSTSId'
 
 if ($res = $dbcon->query($sqlInsertImgPath)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 
 //build insert sql
@@ -164,9 +172,19 @@ $sqlinesertmessage = "INSERT INTO `POSTMESSAGES` (`idPOSTMESSAGES` ,`POSTMESSAGE
 
 if ($res = $dbcon->query($sqlinesertmessage)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 
-header('location: index.php');
+echo count($error_array);
+
+if (count($error_array) > 0) {
+  echo "<pre>";
+  print_r($error_array);
+  echo "</pre>";
+} else {
+  header('location: index.php');
+}
+
 //display image to user
 // echo "<br><img src=' " . $target_dir . "/" . $Newfilename . " ' height='200' width='200'>";
 

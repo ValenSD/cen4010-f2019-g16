@@ -66,7 +66,7 @@ echo '</pre>';
 		AND POSTS.idPOSTS = POSTSIMGPATH.POSTS_idPOSTS
 		AND POSTS.USERS_idUSERS = USERS.idUSERS
 		ORDER BY POSTS.IDPOSTS DESC
-		LIMIT 0 , 30";
+		LIMIT 10";
 		$res = $dbcon->query($sql);
 
 		echo "<table>"; // print table data from posts table
