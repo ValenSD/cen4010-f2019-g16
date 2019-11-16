@@ -157,8 +157,8 @@ if ($res = $dbcon->query($sqlInsertImgPath)) { } else {
 }
 
 //build insert sql
-$sqlinesertmessage = "INSERT INTO `POSTMESSAGES` (`idPOSTMESSAGES` ,`POSTMESSAGESmsg`, `POSTMESSAGEScreatedAt`, `POSTMESSAGESupdatedAt`,
-`POSTS_idPOSTS`) VALUES (NULL, '$subject', '$dateposted', NULL, '$lastInsertedPOSTSId')";
+$sqlinesertmessage = "INSERT INTO `POSTMESSAGES` (`idPOSTMESSAGES` ,`POSTMESSAGESdesc`,`POSTMESSAGESmsg`, `POSTMESSAGEScreatedAt`, `POSTMESSAGESupdatedAt`,
+`POSTS_idPOSTS`) VALUES (NULL, '$descripton', '$subject', '$dateposted', NULL, '$lastInsertedPOSTSId')";
 
 // echo "<p>" . $sqlinesertmessage;
 
@@ -166,7 +166,7 @@ if ($res = $dbcon->query($sqlinesertmessage)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
 }
 
-
+header('location: index.php');
 //display image to user
 // echo "<br><img src=' " . $target_dir . "/" . $Newfilename . " ' height='200' width='200'>";
 
@@ -178,6 +178,6 @@ if ($res = $dbcon->query($sqlinesertmessage)) { } else {
 // var_dump($_SESSION);
 // echo '</pre>';
 // echo "IP ADDRESS: $ip_address<br>";
-echo "date: " . $_POST['dateposted'] . " ";
+// echo "date: " . $_POST['dateposted'] . " ";
 //echo "subject: $_POST['subject']";
 //echo $_SERVER["HTTP_FORWARDED_FOR"];
