@@ -76,13 +76,12 @@ echo '</pre>';
 				"<tr><td>" . $row['USERSfirstname']
 					. " " . $row['USERSlastname'] . "</td><td>"
 					. $row['POSTScreatedAt'] . "</td><td>"
-					. $row['POSTMESSAGESmsg'] . "</td><td>"
-					. $row['POSTSIMGPATHpath'] . "</td></tr>";
+					. $row['POSTMESSAGESmsg'] . "</td><td>
+					<img src=' " . $target_dir . "/" . $row['POSTSIMGPATHpath'] . " ' height='200' width='200'></td></tr>";
 		}
 
 		echo "</table>"; //Close the table in HTML
 		?>
-
 	</div>
 </body>
 

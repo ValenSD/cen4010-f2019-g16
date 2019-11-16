@@ -168,16 +168,16 @@ if ($res = $dbcon->query($sqlinesertmessage)) { } else {
 
 
 //display image to user
-echo "<br><img src=' " . $target_dir . "/" . $Newfilename . " ' height='200' width='200'>";
+// echo "<br><img src=' " . $target_dir . "/" . $Newfilename . " ' height='200' width='200'>";
 
 //troubleshooting
-echo "<br>target dir: $target_dir <br> target file: $target_file";
-echo '<pre>';
-var_dump($_FILES['fileToUpload']);
-echo '</pre>';
-var_dump($_SESSION);
-echo '</pre>';
-echo "IP ADDRESS: $ip_address<br>";
+// echo "<br>target dir: $target_dir <br> target file: $target_file";
+// echo '<pre>';
+// var_dump($_FILES['fileToUpload']);
+// echo '</pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
+// echo "IP ADDRESS: $ip_address<br>";
 echo "date: " . $_POST['dateposted'] . " ";
 //echo "subject: $_POST['subject']";
 //echo $_SERVER["HTTP_FORWARDED_FOR"];
