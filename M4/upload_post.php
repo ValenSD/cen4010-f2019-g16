@@ -102,6 +102,7 @@ $subject = $_POST["subject"];
 $descripton = $_POST["description"];
 
 //insert into POSTS table to get the last inserted ID;
+$userId = $_SESSION['userid'];
 $sqlInsertPost = "
 INSERT INTO `cen4010fal19_g16`.`POSTS` (
   `idPOSTS` ,
@@ -110,7 +111,7 @@ INSERT INTO `cen4010fal19_g16`.`POSTS` (
   `USERS_idUSERS`
   )
   VALUES (
-  NULL , '$dateposted', NULL , '1'
+  NULL , '$dateposted', NULL , '$userId'
   )";
 
 // echo "<p>" . $sqlInsertPost;
