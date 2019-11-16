@@ -50,8 +50,12 @@ body {
 	background-color: #007BFF;
 }
 
-.topnav li.right {
+.topnav li.right{
 	float: right;
+	background-color: #DC3545;
+}
+.topnav li.right a:hover:not(.active) {
+	background-color: #CB2131;
 }
 
 @media screen and (max-width: 600px) {
@@ -127,4 +131,3 @@ h1,h2,h3{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     }
-/* WELCOME PAGE */
