@@ -5,9 +5,9 @@ if (!isset($_SESSION['username'])) {
 	$_SESSION['info'] = "Please Log in first";
 	header('location:login.php');
 }
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
 ?>
 
 <html lang="en">
