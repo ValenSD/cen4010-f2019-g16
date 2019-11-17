@@ -2,7 +2,7 @@
 
 //get ip address
 $ip_address = $_SERVER['REMOTE_ADDR'];
-$LOCAL = 0;
+$LOCAL = 1;
 
 if($LOCAL) //running on my XAMPP server
 {

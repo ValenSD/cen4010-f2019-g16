@@ -19,12 +19,14 @@ if (isset($_POST['register_user'])){
   $email = $_POST["email"];
   $password = $_POST["password"];
 
+
   //validate fields
   if (empty($firstname)) { array_push($error_array, "First Name is empty");}
   if (empty($lastname)) { array_push($error_array, "Last Name is empty");}
   if (empty($email)) { array_push($error_array, "email is empty");}
   if (empty($password)) { array_push($error_array, "Username is empty");}
-
+//ecrypt Password
+  $password_encr = md5($password);
 
 //create user table if it does not exists
 //build sql to create table
@@ -47,7 +49,7 @@ $timestamp = strftime("%Y%m%d%H%M%S");
 if (count($error_array) == 0){
   $stmnt = $dbcon->prepare("INSERT INTO `USERS` (`idUSERS` , `USERSfirstname` , `USERSlastname` , `USERSemail` , `USERSpassword` ,
   `USERSremember_token` , `USERScreatedAt` ,`USERSupdatedAt`)
-  VALUES (NULL , '$firstname', '$lastname', '$email', '$password', NULL , $timestamp, NULL)");
+  VALUES (NULL , '$firstname', '$lastname', '$email', '$password_encr', NULL , $timestamp, NULL)");
 if ($stmnt->execute()){} else {echo "Insert User Error";}
 $dbcon->close();
   $_SESSION['email'] = $email;
@@ -68,9 +70,10 @@ if (isset($_POST['login_user'])){
   $username = $_POST["email"];
   $email = $_POST["email"];
   $password = $_POST["password"];
+  $password_encr = md5($password);
 
 //build sql to verify user
-  $sql = "SELECT USERS.idUSERS FROM USERS WHERE USERS.USERSemail LIKE '$email' AND USERS.USERSpassword = '$password'";
+  $sql = "SELECT USERS.idUSERS FROM USERS WHERE USERS.USERSemail LIKE '$email' AND USERS.USERSpassword = '$password_encr'";
   //execute SQL
   $result = $dbcon->query($sql);
 

@@ -13,3 +13,15 @@ For example, to insert a new post you need:
 
 Now you have all the values from the user post in the database. 
 To query the user post, you need the idUSERS. With it you do a query in POSTS looking for the idUSERS. From there you get the idPOSTS. With it, you can get the message and the path information of the uploaded image. 
+
+
+Register: ok.  not doing any password masking etc.
+Login: ok.  not sure if the session variable is set on all pages
+main page: need to decide what to display here...post population not far enough along yet
+post snapshot: having issues with sql on "INSERT INTO `POSTMESSAGES" statement.  Cannot add or update a child row: a foreign key constraint fails (`mydb`.`postmessages`, CONSTRAINT `fk_POSTMESSAGES_POSTS1` FOREIGN KEY (`POSTS_idPOSTS`) REFERENCES `posts` (`idPOSTS`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+update snapshot: doesn't exist
+edit account: doesn't exist
+
+to do
+encrypt password
+protecting: names, emails, password
