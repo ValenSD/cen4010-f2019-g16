@@ -63,6 +63,7 @@ if (!isset($_SESSION['username'])) {
 					<th>Reporter</th>
 					<th>Date Created</th>
 					<th>Subject</th>
+					<th>Description</th>
 					<th>Image</th>
 					</tr>
 				  </thead>";
