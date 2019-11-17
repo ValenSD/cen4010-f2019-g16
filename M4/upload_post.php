@@ -57,14 +57,15 @@ $sqlposts = "CREATE TABLE IF NOT EXISTS `POSTS` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;";
 if ($dbcon->query($sqlposts)) { } else {
-  echo ("Error description: " . mysqli_error($dbcon));
+  echo ("Error description1: " . mysqli_error($dbcon));
   array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
-//$dbcon->close();
+
 
 //------------------post messages table
 $sqlmsgs = "CREATE TABLE IF NOT EXISTS `POSTMESSAGES` (
   `idPOSTMESSAGES` INT NOT NULL AUTO_INCREMENT,
+  'POSTMESSAGESdesc' VARCHAR(50000) NOT NULL,
   `POSTMESSAGESmsg` VARCHAR(50000) NOT NULL,
   `POSTMESSAGEScreatedAt` TIMESTAMP NULL,
   `POSTMESSAGESupdatedAt` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -78,7 +79,7 @@ $sqlmsgs = "CREATE TABLE IF NOT EXISTS `POSTMESSAGES` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB";
 if ($dbcon->query($sqlmsgs)) { } else {
-  echo ("Error description: " . mysqli_error($dbcon));
+  echo ("Error description2: " . mysqli_error($dbcon));
   array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 //mysqli_free_result($sqlmsgs);
@@ -99,7 +100,7 @@ $sqlimgpath = "CREATE TABLE IF NOT EXISTS `POSTSIMGPATH` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;";
 if ($dbcon->query($sqlimgpath)) { } else {
-  echo ("Error description: " . mysqli_error($dbcon));
+  echo ("Error description3: " . mysqli_error($dbcon));
   array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 //define form-provided variables
@@ -124,7 +125,7 @@ INSERT INTO `cen4010fal19_g16`.`POSTS` (
 
 if ($res = $dbcon->query($sqlInsertPost)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
-  array_push($error_array, "Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description4: " . mysqli_error($dbcon));
 }
 
 // GET THE LAST INSERTED ID FROM POSTS
@@ -140,11 +141,11 @@ if ($res = $dbcon->query($sqlGetLastPOSTSInsertId)) {
   $row = mysqli_fetch_array($res);
   $lastInsertedPOSTSId = $row['idPOSTS'];
 } else {
-  echo ("Error description: " . mysqli_error($dbcon));
+  echo ("Error description5: " . mysqli_error($dbcon));
 }
 
 
-// insert the imagem path using the POSTS id from the previous query
+// insert the image path using the POSTS id from the previous query
 $sqlInsertImgPath = "
 INSERT INTO `cen4010fal19_g16`.`POSTSIMGPATH` (
 `idPOSTSIMGPATH` ,
@@ -160,7 +161,7 @@ NULL , '$Newfilename', '$dateposted', NULL , '$lastInsertedPOSTSId'
 // echo "<p>" . $sqlInsertImgPath;
 
 if ($res = $dbcon->query($sqlInsertImgPath)) { } else {
-  echo ("Error description: " . mysqli_error($dbcon));
+  echo ("Error description6: " . mysqli_error($dbcon));
   array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
 
@@ -172,7 +173,7 @@ $sqlinesertmessage = "INSERT INTO `POSTMESSAGES` (`idPOSTMESSAGES` ,`POSTMESSAGE
 
 if ($res = $dbcon->query($sqlinesertmessage)) { } else {
   echo ("Error description: " . mysqli_error($dbcon));
-  array_push($error_array, "Error description: " . mysqli_error($dbcon));
+  array_push($error_array, "Error description7: " . mysqli_error($dbcon));
 }
 
 echo count($error_array);
@@ -184,6 +185,7 @@ if (count($error_array) > 0) {
 } else {
   header('location: index.php');
 }
+
 
 //display image to user
 // echo "<br><img src=' " . $target_dir . "/" . $Newfilename . " ' height='200' width='200'>";

@@ -2,7 +2,7 @@
 
 //get ip address
 $ip_address = $_SERVER['REMOTE_ADDR'];
-$LOCAL = 1;
+$LOCAL = 0;
 
 if($LOCAL) //running on my XAMPP server
 {
@@ -12,7 +12,7 @@ if($LOCAL) //running on my XAMPP server
 
   //SQL server
   $dbhost = 'localhost';  // Most likely will not need to be changed
-  $dbname = 'mydb';   // Needs to be changed to your designated table database name
+  $dbname = 'cen4010fal19_g16';   // Needs to be changed to your designated table database name
   $dbuser = 'root';   // Needs to be changed to reflect your LAMP server credentials
   $dbpass = ''; // Needs to be changed to reflect your LAMP server credentials
 
