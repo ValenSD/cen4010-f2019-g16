@@ -1,0 +1,9 @@
+These are a few things that I found while putting together the script for the youtube video presentation of our website.
+
+Format for list is: #.[page] Description
+
+1.[Login & Register] Information for testing shows up.
+2.[Login & Register] Need a banner to easily tell what the website is called.
+3.[Register] Need to verify password entry to make sure user enters the password they intend.
+4.[Post Snapshot] User is allowed to choose any date they like, is this meant to be a kind of feature or would it be better to have it automatically post the current days date?
+5.[Post Snapshot] Reset button does not change the location of a picture if selected on the post snapshot page.
