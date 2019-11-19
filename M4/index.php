@@ -36,7 +36,7 @@ if (!isset($_SESSION['username'])) {
 		<li><a href="PostSnapshot.html">Post Snapshot</a></li>
 		<li><a href="SearchSnapshot.html">Search Snapshot</a></li>
 		<li><a href="UpdateSnapshot.html">Update Snapshot</a></li>
-		<li><a href="EditAccount.php">Edit Account</a></li>
+		<li><a href="EditAccount.html">Edit Account</a></li>
 		<li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
 	</ul>
 	<div class="jumbotron jumbotron-fluid" style="background: url('bootstrap/images/campus.jpg') no-repeat; background-size: cover; color: #ffffff;">
