@@ -103,8 +103,11 @@ if ($dbcon->query($sqlimgpath)) { } else {
   echo ("Error description3: " . mysqli_error($dbcon));
   array_push($error_array, "Error description: " . mysqli_error($dbcon));
 }
+//get today's date
+$dateposted = strftime("%Y%m%d%H%M%S");
+
 //define form-provided variables
-$dateposted = $_POST["dateposted"];
+//$dateposted = $_POST["dateposted"];
 $subject = $_POST["subject"];
 $descripton = $_POST["description"];
 

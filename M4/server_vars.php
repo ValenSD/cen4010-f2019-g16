@@ -1,10 +1,10 @@
 <?php
 
 //get ip address
-$ip_address = $_SERVER['REMOTE_ADDR'];
-$LOCAL = 0;
+$host = gethostname();
+$LOCAL = 1;
 
-if($LOCAL) //running on my XAMPP server
+if($host == 'Jim-Laptop') //running on my XAMPP server
 {
   //XAMPP variables
   //Enviornment

@@ -14,7 +14,7 @@
 
 	  <!-- Bootstrap core CSS -->
 	  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	  
+
 	  <!-- Custom styles for this template -->
 	  <link href="bootstrap/css/campussnapshot.css" rel="stylesheet">
 
@@ -23,6 +23,11 @@
 	</head>
 
 	<body>
+		<div class="jumbotron jumbotron-fluid" style="background: url('bootstrap/images/campus.jpg') no-repeat; background-size: cover; color: #ffffff;">
+			<div class="container" >
+				<h1 class="display-4">Welcome to Campus Snapshots</h1>
+			</div>
+		</div>
 	  <div class="container">
 		<div class="col-md-5 mx-auto">
 			<div class="myform form ">
@@ -32,6 +37,7 @@
 					 </div>
 				</div>
 				<form method="post" action="register.php" name="register">
+					<?php include ('errors.php'); ?>
 					<div class="form-group">
 						<input type="hidden" name="register_user" value="register_user">
 						<label>Email Address</label>
@@ -47,7 +53,8 @@
 					</div>
 					<div class="form-group">
 						<label>Password</label>
-						<input type="password" name="password" id="password"  class="form-control" placeholder="Enter Password">
+						<input type="password" name="password1" id="password1"  class="form-control" placeholder="Enter Password">
+						<input type="password" name="password2" id="password2"  class="form-control" placeholder="Confirm Password">
 					</div>
 					<div class="col-md-12 text-center ">
 						<button type="submit" name="register_user" value="register_user" class="btn btn-block mybtn btn-primary tx-tfm">Register</button>

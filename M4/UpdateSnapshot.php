@@ -5,13 +5,14 @@
   	$_SESSION['info'] = "Please Log in first";
   	header('location:login.php');
   }
-  $postid = $_POST['']
+  $postid = $_GET["postn"];
+
 $sqlreadpostdata = "SELECT USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, POSTMESSAGES.POSTMESSAGESmsg, POSTSIMGPATH.POSTSIMGPATHpath
 FROM USERS, POSTS, POSTMESSAGES, POSTSIMGPATH
 WHERE POSTS.IDPOSTS = POSTMESSAGES.POSTS_IDPOSTS
 AND POSTS.idPOSTS = POSTSIMGPATH.POSTS_idPOSTS
 AND POSTS.USERS_idUSERS = USERS.idUSERS
-AND POSTS.idPOSTS = 2
+AND POSTS.idPOSTS = $postid
 LIMIT 0 , 30 ";
 
   ?>
@@ -55,7 +56,7 @@ LIMIT 0 , 30 ";
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Date</label>
 					<div class="col-sm-9">
-						<input type="text" name="dateposted"  class="form-control" id="dateposted" placeholder="Readonly input here…(Date)" readonly>
+						<input type="text" name="dateposted"   class="form-control" id="dateposted" placeholder="Readonly input here…(Date)" readonly>
 					</div>
 				</div>
 				<div class="form-group row">

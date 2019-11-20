@@ -48,7 +48,7 @@ if (!isset($_SESSION['username'])) {
 	<div class="container">
 		<!--populate with posts table when defined -->
 		<?php
-		$sql = "SELECT USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, POSTMESSAGES.POSTMESSAGESdesc, POSTMESSAGES.POSTMESSAGESmsg, POSTSIMGPATH.POSTSIMGPATHpath
+		$sql = "SELECT POSTS.IDPOSTS, USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, POSTMESSAGES.POSTMESSAGESmsg, POSTMESSAGES.POSTMESSAGESdesc,  POSTSIMGPATH.POSTSIMGPATHpath
 		FROM USERS, POSTS, POSTMESSAGES, POSTSIMGPATH
 		WHERE POSTS.IDPOSTS = POSTMESSAGES.POSTS_IDPOSTS
 		AND POSTS.idPOSTS = POSTSIMGPATH.POSTS_idPOSTS
@@ -65,6 +65,7 @@ if (!isset($_SESSION['username'])) {
 					<th>Subject</th>
 					<th>Description</th>
 					<th>Image</th>
+					<th>Edit</th>
 					</tr>
 				  </thead>";
 			echo "<tbody>";
@@ -73,9 +74,13 @@ if (!isset($_SESSION['username'])) {
 					"<tr><td>" . $row['USERSfirstname']
 						. " " . $row['USERSlastname'] . "</td><td>"
 						. $row['POSTScreatedAt'] . "</td><td>"
-						. $row['POSTMESSAGESdesc'] . "</td><td>"
-						. $row['POSTMESSAGESmsg'] . "</td><td>
-						<img src=' " . $target_dir . "/" . $row['POSTSIMGPATHpath'] . " ' height='200' width='200'></td></tr>";
+						. $row['POSTMESSAGESmsg'] . "</td><td>"
+						. $row['POSTMESSAGESdesc'] . "</td><td>";
+						//check if this record has a image name
+						if($row['POSTSIMGPATHpath'] != ''){
+							echo "<img src=' " . $target_dir . "" . $row['POSTSIMGPATHpath'] . " ' height='200' width='200'></td>";
+						}
+						echo "<td><a href=UpdateSnapshot.php?POSTn=" . $row['IDPOSTS'] . ">edit</a></td></tr>";
 			}
 		echo "</tbody>";
 		echo "</table>"; //Close the table in HTML
