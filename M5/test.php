@@ -1,0 +1,23 @@
+<?php
+require_once "server_vars.php";
+$sqlimgpath = "CREATE TABLE IF NOT EXISTS `POSTSIMGPATH` (
+  `idPOSTSIMGPATH` INT NOT NULL AUTO_INCREMENT,
+  `POSTSIMGPATHpath` VARCHAR(255) NULL,
+  `POSTSIMGPATHcreatedAt` TIMESTAMP NULL,
+  `POSTSIMGPATHupdatedAt` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+  `POSTS_idPOSTS` INT NOT NULL,
+  PRIMARY KEY (`idPOSTSIMGPATH`),
+  INDEX `fk_POSTSIMGPATH_POSTS1_idx` (`POSTS_idPOSTS` ASC),
+  CONSTRAINT `fk_POSTSIMGPATH_POSTS1`
+    FOREIGN KEY (`POSTS_idPOSTS`)
+    REFERENCES `POSTS` (`idPOSTS`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;";
+if($dbcon->query($sqlimgpath)){
+  echo "POSTSIMGPATH table created";
+}else {
+  echo("Error description: " . mysqli_error($dbcon));
+}
+
+?>
