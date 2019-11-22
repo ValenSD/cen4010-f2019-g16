@@ -1,3 +1,16 @@
+<?php
+session_start();
+require_once './server_vars.php';
+if (!isset($_SESSION['username'])) {
+	$_SESSION['info'] = "Please Log in first";
+	header('location:login.php');
+
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +23,7 @@
   <title>Campus Snapshots</title>
   <!-- Bootstrap core CSS -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  
+
   <!-- Custom styles for this template -->
   <link href="bootstrap/css/campussnapshot.css" rel="stylesheet">
 
@@ -20,9 +33,9 @@
 <body>
 	<ul class="topnav">
 	  <li><a href="index.php">Main Page</a></li>
-	  <li><a href="PostSnapshot.html">Post Snapshot</a></li>
-	  <li><a class="active" href="SearchSnapshot.html">Search Snapshot</a></li>
-	  <li><a href="UpdateSnapshot.html">Update Snapshot</a></li>
+	  <li><a href="PostSnapshot.php">Post Snapshot</a></li>
+	  <li><a class="active" href="SearchSnapshot.php">Search Snapshot</a></li>
+	  <!-- <li><a href="UpdateSnapshot.php">Update Snapshot</a></li> -->
 	  <li><a href="EditAccount.html">Edit Account</a></li>
 	  <li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i>  Logout</a></li>
 	</ul>
@@ -33,7 +46,7 @@
 					<h1>Search Snapshot</h1>
 				</div>
 			</div>
-			<form action="" method="post" enctype="multipart/form-data" name="SearchSnapshot">
+					<form action="searchresults.php" method="post" enctype="multipart/form-data" name="SearchSnapshot">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Date</label>
 					<div class="col-sm-9">
@@ -47,16 +60,28 @@
 					</div>
 				</div>
 				<div class="form-group row">
+					<label class="col-sm-3 col-form-label">Description</label>
+					<div class="col-sm-9">
+						<input type="text" name="description"  class="form-control" id="description" placeholder="Enter Description" >
+					</div>
+				</div>
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Reporter</label>
 					<div class="col-sm-9">
-						<input type="text" name="reporter"  class="form-control" id="reporter" placeholder="Enter Reporter's name" >
-					</div>	
+						<input type="text" name="username"  class="form-control" id="username" placeholder="Enter Reporter's Name" >
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label">Post Number</label>
+					<div class="col-sm-9">
+						<input type="text" name="postn"  class="form-control" id="postn" placeholder="Enter Post Number" >
+					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Days Active</label>
 					<div class="col-sm-9">
 						<input type="text" name="daysactive" class="form-control" id="daysactive" placeholder="Enter number of days active" >
-					</div>	
+					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Views</label>
@@ -71,7 +96,7 @@
 						  <option>Open</option>
 						  <option>Closed</option>
 						</select>
-					</div>	
+					</div>
 				</div>
 				<div class="text-center csbuttons">
 					<button type="reset" name="reset" class=" btn btn-secondary tx-tfm">Reset</button>

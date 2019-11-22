@@ -1,3 +1,13 @@
+<?php
+session_start();
+require_once './server_vars.php';
+if (!isset($_SESSION['username'])) {
+	$_SESSION['info'] = "Please Log in first";
+	header('location:login.php');
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -20,9 +30,9 @@
 	<body>
 		<ul class="topnav">
 		  <li><a href="index.php">Main Page</a></li>
-		  <li><a class="active" href="PostSnapshot.html">Post Snapshot</a></li>
-		  <li><a href="SearchSnapshot.html">Search Snapshot</a></li>
-		  <li><a href="UpdateSnapshot.html">Update Snapshot</a></li>
+		  <li><a class="active" href="PostSnapshot.php">Post Snapshot</a></li>
+		  <li><a href="SearchSnapshot.php">Search Snapshot</a></li>
+		  <!-- <li><a href="UpdateSnapshot.php">Update Snapshot</a></li> -->
 		  <li><a href="EditAccount.html">Edit Account</a></li>
 		  <li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i>  Logout</a></li>
 		</ul>

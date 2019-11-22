@@ -6,11 +6,11 @@ if (!isset($_SESSION['username'])) {
 	header('location:login.php');
 
 }
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
 $curuser = $_SESSION["userid"];
-echo "curuser:  $curuser";
+
 ?>
 
 <html lang="en">
@@ -36,9 +36,9 @@ echo "curuser:  $curuser";
 <body>
 	<ul class="topnav">
 		<li><a class="active" href="index.php">Main Page</a></li>
-		<li><a href="PostSnapshot.html">Post Snapshot</a></li>
-		<li><a href="SearchSnapshot.html">Search Snapshot</a></li>
-		<li><a href="UpdateSnapshot.html">Update Snapshot</a></li>
+		<li><a href="PostSnapshot.php">Post Snapshot</a></li>
+		<li><a href="SearchSnapshot.php">Search Snapshot</a></li>
+		<!-- <li><a href="UpdateSnapshot.php">Update Snapshot</a></li> -->
 		<li><a href="EditAccount.html">Edit Account</a></li>
 		<li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
 	</ul>
