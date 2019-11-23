@@ -70,8 +70,8 @@ if (isset($_POST['register_user'])){
     $timestamp = strftime("%Y%m%d%H%M%S");
     if (count($error_array) == 0){
       $stmnt = $dbcon->prepare("INSERT INTO `USERS` (`idUSERS` , `USERSfirstname` , `USERSlastname` , `USERSemail` , `USERSpassword` ,
-        `USERSremember_token` , `USERScreatedAt` ,`USERSupdatedAt`)
-        VALUES (NULL , '$firstname', '$lastname', '$email', '$password_encr', NULL , $timestamp, NULL)");
+        `USERSremember_token` , `USERScreatedAt` ,`USERSTYPE`, `USERSupdatedAt`)
+        VALUES (NULL , '$firstname', '$lastname', '$email', '$password_encr', NULL , $timestamp, 0, NULL)");
         if ($stmnt->execute()){} else {echo "Insert User Error";}
         $dbcon->close();
         $_SESSION['email'] = $email;
@@ -104,7 +104,7 @@ if (isset($_POST['login_user'])){
     $password_encr = md5($password);
 
     //build sql to verify user
-    $sql = "SELECT USERS.idUSERS FROM USERS WHERE USERS.USERSemail LIKE '$email' AND USERS.USERSpassword = '$password_encr'";
+    $sql = "SELECT USERS.idUSERS, USERS.USERStype FROM USERS WHERE USERS.USERSemail LIKE '$email' AND USERS.USERSpassword = '$password_encr'";
     //execute SQL
     $result = $dbcon->query($sql);
 
@@ -120,6 +120,7 @@ if (isset($_POST['login_user'])){
       $_SESSION['username'] = $email;
       $_SESSION['email'] = $email;
       $_SESSION['userid'] = $row['idUSERS'];
+      $_SESSION['userType'] = $row['USERStype'];
       //send to main page
       header('location: index.php');
     }else{

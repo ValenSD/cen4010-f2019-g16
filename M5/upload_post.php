@@ -118,10 +118,12 @@ INSERT INTO `cen4010fal19_g16`.`POSTS` (
   `idPOSTS` ,
   `POSTScreatedAt` ,
   `POSTSupdatedAt` ,
-  `USERS_idUSERS`
+  `USERS_idUSERS`, 
+  `POSTSviews`,
+  `POSTSstatus`
   )
   VALUES (
-  NULL , '$dateposted', NULL , '$userId'
+  NULL , '$dateposted', NULL , '$userId', 1, 1
   )";
 
 // echo "<p>" . $sqlInsertPost;
