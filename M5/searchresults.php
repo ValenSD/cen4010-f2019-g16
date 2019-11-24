@@ -70,7 +70,7 @@ GROUP BY POSTS.IDPOSTS DESC";
 
 echo '<pre>';
 echo $sql;
-echo '/<pre>';
+echo '</pre>';
 
 $res = $dbcon->query($sql);
 
