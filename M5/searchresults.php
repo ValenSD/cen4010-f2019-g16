@@ -4,7 +4,6 @@ require_once './server_vars.php';
 if (!isset($_SESSION['username'])) {
 	$_SESSION['info'] = "Please Log in first";
 	header('location:login.php');
-
 }
 ?>
 <!DOCTYPE html>
@@ -53,15 +52,26 @@ if(empty($_POST['description'])){
 }else {
   $description = $_POST['description'];
 }
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
 
-
-$sql = "SELECT POSTS.IDPOSTS, POSTS.USERS_idUSERS, USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, POSTMESSAGES.POSTMESSAGESmsg, POSTMESSAGES.POSTMESSAGESdesc,  POSTSIMGPATH.POSTSIMGPATHpath
+$sql = "SELECT POSTS.IDPOSTS, POSTS.USERS_idUSERS, 
+  USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, 
+  POSTMESSAGES.POSTMESSAGESmsg, POSTMESSAGES.POSTMESSAGESdesc,  POSTSIMGPATH.POSTSIMGPATHpath
 FROM USERS, POSTS, POSTMESSAGES, POSTSIMGPATH
 WHERE POSTS.IDPOSTS = POSTMESSAGES.POSTS_IDPOSTS
 AND POSTS.idPOSTS = POSTSIMGPATH.POSTS_idPOSTS
 AND POSTS.USERS_idUSERS = USERS.idUSERS
-AND USERS.USERSlastname LIKE '$user' OR USERS.USERSfirstname LIKE '$user' AND POSTMESSAGES.POSTMESSAGESmsg LIKE '$subject' AND POSTMESSAGES.POSTMESSAGESdesc LIKE '$description'
+AND (USERS.USERSlastname LIKE '%$user%' OR USERS.USERSfirstname LIKE '%$user%')
+AND POSTMESSAGES.POSTMESSAGESmsg LIKE '%$subject%'
+AND POSTMESSAGES.POSTMESSAGESdesc LIKE '%$description%'
 GROUP BY POSTS.IDPOSTS DESC";
+
+echo '<pre>';
+echo $sql;
+echo '/<pre>';
+
 $res = $dbcon->query($sql);
 
 echo "<table class= \"table table-striped table-bordered\">"; // print table data from posts table
