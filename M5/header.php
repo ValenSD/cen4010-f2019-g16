@@ -6,7 +6,7 @@
     <li><a href="EditAccount.php">Edit Account</a></li>
     <?php
     //show the reports link in the main page if user is admin
-    if ($userType === "1") {
+    if ($_SESSION["userType"] === "1") {
         echo "<li><a href=\"Reports.php\">Reports</a></li>";
     }
     ?>

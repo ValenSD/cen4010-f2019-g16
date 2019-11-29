@@ -10,8 +10,6 @@ if (!isset($_SESSION['username'])) {
 //  var_dump($_SESSION);
 //  echo '</pre>';
 $curuser = $_SESSION["userid"];
-$userType = $_SESSION["userType"];
-
 ?>
 
 <html lang="en">
@@ -40,7 +38,7 @@ $userType = $_SESSION["userType"];
 		<div class="container" >
 			<h1 class="display-4">Welcome to Campus Snapshots</h1>
 			<h5 class="lead">Current User: <?php echo $_SESSION['username'] ?>
-			<?php if($userType === "1")
+			<?php if($_SESSION["userType"] === "1")
 			{
 				echo "| Role: administrator";
 			} ?>
