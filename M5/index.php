@@ -6,17 +6,18 @@ if (!isset($_SESSION['username'])) {
 	header('location:login.php');
 
 }
-// echo '<pre>';
-// var_dump($_SESSION);
-// echo '</pre>';
+//  echo '<pre>';
+//  var_dump($_SESSION);
+//  echo '</pre>';
 $curuser = $_SESSION["userid"];
+$userType = $_SESSION["userType"];
 
 ?>
 
 <html lang="en">
 
 <head>
-
+	<?php include('header.php') ?>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
@@ -34,18 +35,16 @@ $curuser = $_SESSION["userid"];
 
 
 <body>
-	<ul class="topnav">
-		<li><a class="active" href="index.php">Main Page</a></li>
-		<li><a href="PostSnapshot.php">Post Snapshot</a></li>
-		<li><a href="SearchSnapshot.php">Search Snapshot</a></li>
-		<!-- <li><a href="UpdateSnapshot.php">Update Snapshot</a></li> -->
-		<li><a href="EditAccount.html">Edit Account</a></li>
-		<li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
-	</ul>
+
 	<div class="jumbotron jumbotron-fluid" style="background: url('bootstrap/images/campus.jpg') no-repeat; background-size: cover; color: #ffffff;">
 		<div class="container" >
 			<h1 class="display-4">Welcome to Campus Snapshots</h1>
-			<h5 class="lead">Current User: <?php echo $_SESSION['username'] ?></h5>
+			<h5 class="lead">Current User: <?php echo $_SESSION['username'] ?>
+			<?php if($userType === "1")
+			{
+				echo "| Role: administrator";
+			} ?>
+			</h5>
 		</div>
 	</div>
 	<div class="container">
