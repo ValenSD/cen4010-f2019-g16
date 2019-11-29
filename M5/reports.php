@@ -68,7 +68,7 @@ $curuser = $_SESSION["userid"];
 				echo
 					"<tr><td>" . $row['USERSfirstname']
 						. " " . $row['USERSlastname'] . "</td><td>"
-                        . $row['POSTS'] . "</td><td>
+                        . $row['POSTS'] . "
                     </td></tr>";
 			}
 		echo "</tbody>";
