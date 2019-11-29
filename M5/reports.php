@@ -68,9 +68,8 @@ $curuser = $_SESSION["userid"];
 				echo
 					"<tr><td>" . $row['USERSfirstname']
 						. " " . $row['USERSlastname'] . "</td><td>"
-						. $row['POSTScreatedAt'] . "</td><td>"
-						. $row['POSTMESSAGESmsg'] . "</td><td>"
-						. $row['POSTMESSAGESdesc'] . "</td><td></td></tr>";
+                        . $row['POSTS'] . "</td><td>
+                    </td></tr>";
 			}
 		echo "</tbody>";
 		echo "</table>"; //Close the table in HTML
