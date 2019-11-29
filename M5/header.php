@@ -7,7 +7,7 @@
     <?php
     //show the reports link in the main page if user is admin
     if ($_SESSION["userType"] === "1") {
-        echo "<li><a href=\"Reports.php\">Reports</a></li>";
+        echo "<li><a href=\"reports.php\">Reports</a></li>";
     }
     ?>
     <li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
