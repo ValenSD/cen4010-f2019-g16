@@ -78,14 +78,15 @@ $curuser = $_SESSION["userid"];
 
 		// <!--Most active day -->
 
-		$sql = "SELECT POSTS.POSTScreatedAt, COUNT(POSTS.POSTScreatedAt) AS POSTS
+		$sql = "SELECT SUBSTR(POSTS.POSTScreatedAt, 1,10) AS createdAt, 
+		COUNT(POSTS.POSTScreatedAt) AS POSTS
 		FROM USERS, POSTS, POSTMESSAGES, POSTSIMGPATH
 		WHERE POSTS.IDPOSTS = POSTMESSAGES.POSTS_IDPOSTS
 		AND POSTS.idPOSTS = POSTSIMGPATH.POSTS_idPOSTS
 		AND POSTS.USERS_idUSERS = USERS.idUSERS
-		GROUP BY POSTS.POSTScreatedAt
+		GROUP BY createdAt
 		ORDER BY POSTS DESC
-		LIMIT 10";
+		LIMIT 25";
 		$res = $dbcon->query($sql);
 		echo "<div><h2>Most Active Days</h2></div>";
 		echo "<table class= \"table table-striped table-bordered\">"; // print table data from posts table
