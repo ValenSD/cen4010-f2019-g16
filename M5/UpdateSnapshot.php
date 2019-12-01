@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 $postid = $_GET["postn"];
 $error_array   = array();
 
-$sqlreadpostdata = "SELECT POSTS.IDPOSTS, POSTS.USERS_idUSERS, USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, POSTMESSAGES.POSTMESSAGESmsg, POSTSIMGPATH.POSTSIMGPATHpath
+$sqlreadpostdata = "SELECT POSTS.IDPOSTS, POSTS.USERS_idUSERS, USERS.USERSfirstname, USERS.USERSlastname, POSTS.POSTScreatedAt, POSTMESSAGES.POSTMESSAGESmsg, POSTMESSAGES.POSTMESSAGESdesc, POSTSIMGPATH.POSTSIMGPATHpath
 FROM USERS, POSTS, POSTMESSAGES, POSTSIMGPATH
 WHERE POSTS.IDPOSTS = POSTMESSAGES.POSTS_IDPOSTS
 AND POSTS.idPOSTS = POSTSIMGPATH.POSTS_idPOSTS
@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($res);
 //store result in local variables
 $dateposted = $row["POSTScreatedAt"];
 $subject = $row['POSTMESSAGESmsg'];
-$descripton = $row['POSTMESSAGESmsg'];
+$descripton = $row['POSTMESSAGESdesc'];
 $reporter = $row['USERSfirstname']  . " " . $row['USERSlastname'];
 if($row['USERS_idUSERS'] == $_SESSION["userid"]){
   $readonly = "";
