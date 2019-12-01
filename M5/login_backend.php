@@ -1,6 +1,5 @@
 
 <?php session_start();
-
 //initialize variables
 $firstname = "";
 $lastname = "";
@@ -12,6 +11,7 @@ require_once './server_vars.php';
 
 // first time registration
 if (isset($_POST['register_user'])){
+  var_dump($_POST);
 
   //get form values
   $firstname = $_POST["firstname"];
@@ -47,6 +47,7 @@ if (isset($_POST['register_user'])){
     `USERSpassword` VARCHAR(45) NULL,
     `USERSremember_token` VARCHAR(45) NULL,
     `USERScreatedAt` TIMESTAMP NULL,
+    `USERSTYPE` INT(10) NULL,
     `USERSupdatedAt` TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`idUSERS`))
     ENGINE = InnoDB;");
@@ -71,18 +72,18 @@ if (isset($_POST['register_user'])){
     if (count($error_array) == 0){
       $stmnt = $dbcon->prepare("INSERT INTO `USERS` (`idUSERS` , `USERSfirstname` , `USERSlastname` , `USERSemail` , `USERSpassword` ,
         `USERSremember_token` , `USERScreatedAt` ,`USERSTYPE`, `USERSupdatedAt`)
-        VALUES (NULL , '$firstname', '$lastname', '$email', '$password_encr', NULL , $timestamp, 0, NULL)");
-        if ($stmnt->execute()){} else {echo "Insert User Error";}
+        VALUES (NULL , '$firstname', '$lastname', '$email', '$password_encr', NULL , '$timestamp', 0, NULL)");
+        if ($stmnt->execute()){} else {echo "Error description: " . mysqli_error($dbcon);}
         $dbcon->close();
         $_SESSION['email'] = $email;
         $_SESSION['firstname']=$firstname;
         $_SESSION['lastname']=$lastname;
         $_SESSION['success'] = "Success";
         header('location: index.php');
-        //   //troubleshooting...remove later
-        //   echo '<pre>';
-        // var_dump($_SESSION);
-        // echo '</pre>';
+          //troubleshooting...remove later
+          echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
       }
 
 } //end of register user if
@@ -127,23 +128,49 @@ if (isset($_POST['login_user'])){
       array_push($error_array, "Wrong username or password");
     }
   }
-  //troubleshooting, remove later
-  // echo '<pre>';
-  // var_dump($result);
-  // echo '</pre>';
 
 } //end login user 'if'
 
-//troubleshooting, remove later
-// echo '<pre>';
-// var_dump($_POST);
-// echo '</pre>';
-//
-// echo '<pre>', "session: ";
-// var_dump($_SESSION);
-// echo '</pre>';
+//edit account
+echo "<pre> POST:";
+var_dump($_POST);
+echo "</pre>";
+echo "<pre> SESSION:";
+var_dump($_SESSION);
+echo "</pre>";
+
+if (isset($_POST['update_user'])){
+  $username = $_POST["email"];
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $password_encr = md5($password);
+  echo "password: $password_encr";
+  $userid = $_SESSION['userid'];
+  echo "<br>userid: ", $_SESSION['userid'];
 
 
+  //sql to get user info
+  $sql = "SELECT * FROM USERS WHERE idUSERS = $userid";
+  //execute SQL
+  $result = $dbcon->query($sql);
+  if($result){echo "<br>query ok <br>";}else{array_push($error_array, "could not locate user");}
+
+  //see if we matched any records
+  $row_count = mysqli_num_rows($result);
+  echo "row count: ", $row_count;
+  $row = mysqli_fetch_assoc($result);
+  if (mysqli_num_rows($result) == 1){
+    $sql = "UPDATE USERS
+    set USERS.USERSemail = '$email', USERS.USERSpassword = '$password_encr'
+    WHERE idUSERS = $userid";
+    if($result = $dbcon->query($sql)){
+      //log off user?
+      array_push($error_array, "update sucessful");
 
 
- ?>
+    }
+
+  }else{
+    array_push($error_array, "There was a problem. Please contact the administrator");
+  }
+}
