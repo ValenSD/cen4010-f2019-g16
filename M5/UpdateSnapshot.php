@@ -49,14 +49,8 @@ $row = mysqli_fetch_array($res);
 
 </head>
 <body>
-	<ul class="topnav">
-	  <li><a href="index.php">Main Page</a></li>
-	  <li><a href="PostSnapshot.php">Post Snapshot</a></li>
-	  <li><a href="SearchSnapshot.php">Search Snapshot</a></li>
-	  <!-- <li><a class="active" href="UpdateSnapshot.php">Update Snapshot</a></li> -->
-	  <li><a href="EditAccount.html">Edit Account</a></li>
-	  <li class="right"><a href="logout.php"><i class="fa fa-sign-out"></i>  Logout</a></li>
-	</ul>
+  <?php
+include('header.php');?>
 	<div class="container">
 		<div class="col-md-5 mx-auto">
 			<div class="logo mb-3">

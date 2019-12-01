@@ -30,7 +30,7 @@ $email = $_SESSION['username'];
 					<h1>Edit Account</h1>
 				</div>
 			</div>
-			<form action="editaccount.php" method="post" name="EditAccount">
+			<form action="EditAccount.php" method="post" name="EditAccount">
         <?php include('errors.php'); ?>
         <input type="hidden" name="update_user" value="update_user">
 				<div class="form-group row">
