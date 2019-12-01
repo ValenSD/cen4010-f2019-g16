@@ -99,7 +99,7 @@ $curuser = $_SESSION["userid"];
 			echo "<tbody>";
 			while ($row = mysqli_fetch_array($res)) {   //Creates a loop to loop through results
 				echo
-					"<tr><td>" . $row['POSTScreatedAt'] . "</td><td>"
+					"<tr><td>" . $row['createdAt'] . "</td><td>"
 						. " " . $row['POSTS'] . "
                     </td></tr>";
 			}
