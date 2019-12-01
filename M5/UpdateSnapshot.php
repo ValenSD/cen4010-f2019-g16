@@ -24,9 +24,12 @@ $subject = $row['POSTMESSAGESmsg'];
 $descripton = $row['POSTMESSAGESmsg'];
 $reporter = $row['USERSfirstname']  . " " . $row['USERSlastname'];
 if($row['USERS_idUSERS'] == $_SESSION["userid"]){
-  $readonly = "";}
+  $readonly = "";
+  $edit = "Update";
+  }
   else{
     $readonly = "readonly";
+    $edit = "View";
   }
   ?>
 
@@ -81,7 +84,7 @@ if($row['USERS_idUSERS'] == $_SESSION["userid"]){
 		<div class="col-md-5 mx-auto">
 			<div class="logo mb-3">
 				<div class="col-lg text-center">
-					<h1>Update Snapshot</h1>
+					<h1><?php echo $edit ?> Snapshot</h1>
 				</div>
 			</div>
 			<form action="" method="post" enctype="multipart/form-data" name="UpdateSnapsot">
@@ -91,25 +94,25 @@ if($row['USERS_idUSERS'] == $_SESSION["userid"]){
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Date</label>
 					<div class="col-sm-9">
-						<input type="text" name="dateposted" value="<?php echo $dateposted ?>"  class="form-control" id="dateposted" placeholder="Readonly input here…(Date)" readonly>
+						<input type="text" name="dateposted" value="<?php echo $dateposted ?>"  class="form-control" id="dateposted" placeholder=Readonly input here…(Date)" readonly>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Subject</label>
 					<div class="col-sm-9">
-						<input type="text" name="subject"   value="<?php echo $subject ?>" class="form-control" id="subject" placeholder="<?php echo $readonly ?>" >
+						<input type="text" name="subject"   value="<?php echo $subject ?>" class="form-control" id="subject" placeholder=" "<?php echo $readonly ?> >
 					</div>
 				</div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Description</label>
           <div class="col-sm-9">
-            <input type="text" name="description"   value="<?php echo $descripton ?>" class="form-control" id="description" placeholder="<?php echo $readonly ?>" >
+            <input type="text" name="description"   value="<?php echo $descripton ?>" class="form-control" id="description" placeholder=""<?php echo $readonly ?> >
           </div>
         </div>
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Reporter</label>
 					<div class="col-sm-9">
-						<input type="text" name="reporter"   value="<?php echo $reporter ?>" class="form-control" id="reporter"  placeholder="<?php echo $readonly ?>">
+						<input type="text" name="reporter"   value="<?php echo $reporter ?>" class="form-control" id="reporter"  placeholder=""<?php echo $readonly ?>>
 					</div>
 				</div>
 				<!-- <div class="form-group row">
