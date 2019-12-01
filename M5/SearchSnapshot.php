@@ -65,28 +65,10 @@ if (!isset($_SESSION['username'])) {
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 col-form-label">Post Number</label>
-					<div class="col-sm-9">
-						<input type="text" name="postn"  class="form-control" id="postn" placeholder="Enter Post Number" >
-					</div>
-				</div>
-				<div class="form-group row">
-					<label class="col-sm-3 col-form-label">Days Active</label>
-					<div class="col-sm-9">
-						<input type="text" name="daysactive" class="form-control" id="daysactive" placeholder="Enter number of days active" >
-					</div>
-				</div>
-				<div class="form-group row">
-					<label class="col-sm-3 col-form-label">Views</label>
-					<div class="col-sm-9">
-						<input type="text" name="views" class="form-control" id="views" placeholder="Enter number of views" >
-					</div>
-				</div>
-				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Status:</label>
 					<div class="col-sm-9">
 						<select name="status"  class="form-control" id="status" >
-						  <option>Open</option>
+						  <option selected="selected">Open</option>
 						  <option>Closed</option>
 						</select>
 					</div>

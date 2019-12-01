@@ -28,7 +28,7 @@ if (!isset($_SESSION['username'])) {
 
 	</head>
 	<body>
-		<?php include('header.php') ?>1
+		<?php include('header.php') ?>
 		<div class="container">
 			<div class="col-md-5 mx-auto">
 				<div class="logo mb-3">
