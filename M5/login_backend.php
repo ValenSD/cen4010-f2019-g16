@@ -132,45 +132,49 @@ if (isset($_POST['login_user'])){
 } //end login user 'if'
 
 //edit account
-echo "<pre> POST:";
-var_dump($_POST);
-echo "</pre>";
-echo "<pre> SESSION:";
-var_dump($_SESSION);
-echo "</pre>";
 
 if (isset($_POST['update_user'])){
-  $username = $_POST["email"];
-  $email = $_POST["email"];
-  $password = $_POST["password"];
-  $password_encr = md5($password);
-  echo "password: $password_encr";
-  $userid = $_SESSION['userid'];
-  echo "<br>userid: ", $_SESSION['userid'];
-
-
-  //sql to get user info
-  $sql = "SELECT * FROM USERS WHERE idUSERS = $userid";
-  //execute SQL
-  $result = $dbcon->query($sql);
-  if($result){echo "<br>query ok <br>";}else{array_push($error_array, "could not locate user");}
-
-  //see if we matched any records
-  $row_count = mysqli_num_rows($result);
-  echo "row count: ", $row_count;
-  $row = mysqli_fetch_assoc($result);
-  if (mysqli_num_rows($result) == 1){
-    $sql = "UPDATE USERS
-    set USERS.USERSemail = '$email', USERS.USERSpassword = '$password_encr'
-    WHERE idUSERS = $userid";
-    if($result = $dbcon->query($sql)){
-      //log off user?
-      array_push($error_array, "update sucessful");
-
-
-    }
-
-  }else{
-    array_push($error_array, "There was a problem. Please contact the administrator");
+  //verify passwords match and are not empty
+  $password1 = $_POST["password1"];
+  $password2 = $_POST["password2"];
+  if (empty($password1)) { array_push($error_array, "Password is empty");}
+  if (empty($password2)) { array_push($error_array, "Confirm Password is empty");}
+  if ($password1 != $password2){
+    array_push($error_array, "The passwords do not mach");
   }
-}
+  //if no errors, set user variables
+  if (count($error_array) == 0){
+    var_dump($_SESSION);
+    $userid = $_SESSION['userid'];
+    $username = $_POST["email"];
+    $email = $_POST["email"];
+    $password_encr = md5($password1);
+    $_SESSION['username'] = $username;
+
+    //sql to get user info
+    $sql = "SELECT * FROM USERS WHERE idUSERS = $userid";
+    //execute SQL
+    $result = $dbcon->query($sql);
+    //confirm database match
+    if($result){}else{array_push($error_array, "could not locate user");}
+
+    //update user record
+    $row_count = mysqli_num_rows($result);
+    $row = mysqli_fetch_assoc($result);
+    if (mysqli_num_rows($result) == 1){
+      $sql = "UPDATE USERS
+      set USERS.USERSemail = '$email', USERS.USERSpassword = '$password_encr'
+      WHERE idUSERS = $userid";
+      if($result = $dbcon->query($sql)){
+        //notify user of sucessful update
+        array_push($error_array, "update sucessful");
+        //update session variable with (possibly) new email
+        $_SESSION['username'] == $email;
+      }
+
+    }else{
+      //catch unknown issue
+      array_push($error_array, "There was a problem. Please contact the administrator");
+    }
+  } //end array 0 if
+} //end update user if

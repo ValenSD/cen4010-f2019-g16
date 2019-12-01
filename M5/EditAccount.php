@@ -42,7 +42,8 @@ $email = $_SESSION['username'];
 				<div class="form-group row">
 					<label class="col-sm-4 col-form-label">Password</label>
 					<div class="col-sm-8">
-						<input type="password" name="password" id="password"  class="form-control" placeholder="Enter Password">
+						<input type="password1" name="password1" id="password1"  class="form-control" placeholder="Enter or Change Password">
+            <input type="password2" name="password2" id="password2"  class="form-control" placeholder="Verify above Password">
 					</div>
 				</div>
 				<div class="text-center csbuttons">
