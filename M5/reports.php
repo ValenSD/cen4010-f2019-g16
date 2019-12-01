@@ -44,7 +44,7 @@ $curuser = $_SESSION["userid"];
 		</div>
 	</div> -->
 	<div class="container">
-		<!--populate with posts table when defined -->
+		<!--Most active Users -->
 		<?php
 		$sql = "SELECT USERS.USERSfirstname, USERS.USERSlastname, COUNT(USERS.USERSfirstname) AS POSTS
         FROM USERS, POSTS, POSTMESSAGES, POSTSIMGPATH
@@ -55,7 +55,7 @@ $curuser = $_SESSION["userid"];
         ORDER BY POSTS DESC
         LIMIT 10";
 		$res = $dbcon->query($sql);
-
+		echo "<div><h2>Most Active Users</h2></div>";
 		echo "<table class= \"table table-striped table-bordered\">"; // print table data from posts table
 			echo "<thead class= \"thead-dark\">
 					<tr>
@@ -69,6 +69,37 @@ $curuser = $_SESSION["userid"];
 					"<tr><td>" . $row['USERSfirstname']
 						. " " . $row['USERSlastname'] . "</td><td>"
                         . $row['POSTS'] . "
+                    </td></tr>";
+			}
+		echo "</tbody>";
+		echo "</table>"; //Close the table in HTML
+
+
+
+		// <!--Most active day -->
+
+		$sql = "SELECT POSTS.POSTScreatedAt, COUNT(POSTS.POSTScreatedAt) AS POSTS
+		FROM USERS, POSTS, POSTMESSAGES, POSTSIMGPATH
+		WHERE POSTS.IDPOSTS = POSTMESSAGES.POSTS_IDPOSTS
+		AND POSTS.idPOSTS = POSTSIMGPATH.POSTS_idPOSTS
+		AND POSTS.USERS_idUSERS = USERS.idUSERS
+		GROUP BY POSTS.POSTScreatedAt
+		ORDER BY POSTS DESC
+		LIMIT 10";
+		$res = $dbcon->query($sql);
+		echo "<div><h2>Most Active Days</h2></div>";
+		echo "<table class= \"table table-striped table-bordered\">"; // print table data from posts table
+			echo "<thead class= \"thead-dark\">
+					<tr>
+                        <th>Date</th>
+                        <th>Number of Posts</th>
+					</tr>
+				  </thead>";
+			echo "<tbody>";
+			while ($row = mysqli_fetch_array($res)) {   //Creates a loop to loop through results
+				echo
+					"<tr><td>" . $row['POSTScreatedAt'] . "</td><td>"
+						. " " . $row['POSTS'] . "
                     </td></tr>";
 			}
 		echo "</tbody>";
