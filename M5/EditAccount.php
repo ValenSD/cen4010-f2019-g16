@@ -5,13 +5,12 @@ $email = $_SESSION['username'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php 
+<?php
 	$page = "Edit Account";
-	include('header.php') 
+	include('header.php')
 ?>
 </head>
 <body>
-	<?php include('header.php') ?>
 	<div class="container">
 		<div class="col-md-5 mx-auto">
 			<div class="logo mb-3">
