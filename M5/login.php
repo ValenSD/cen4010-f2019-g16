@@ -61,6 +61,8 @@
 				</form>
 			</div>
 		</div>
+		<P></P>
+		<P></P>
 		<h1>Welcome to our Privacy Policy</h1>
 		<h3>Your privacy is critically important to us.</h3>
 		Campus Snapshot is located at:<br />
