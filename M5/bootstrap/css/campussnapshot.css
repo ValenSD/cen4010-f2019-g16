@@ -6,6 +6,7 @@
 body {
   font-family: "Lato", sans-serif;
   padding-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .carousel-item {
@@ -22,47 +23,35 @@ body {
   margin-bottom: 30px;
 }
 /* TOP MENU */
-.topnav {
+.navbar-custom {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
   background-color: #333;
+  padding: 0px !important;
 }
 
-.topnav li {
-	float: left;
-}
-
-.topnav li a {
+.navbar-custom li a {
+  padding: 14px 20px 14px 20px !important;
   display: block;
-  color: white;
+  color: white !important;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
 }
 
-.topnav li a:hover:not(.active) {
+.navbar-custom li a:hover:not(.active) {
 	background-color: #111;
 }
 
-.topnav li a.active {
+.navbar-custom li a.active {
 	background-color: #007BFF;
 }
 
-.topnav li.right{
-	float: right;
+.navbar-custom li.right{
 	background-color: #DC3545;
 }
-.topnav li.right a:hover:not(.active) {
-	background-color: #CB2131;
-}
 
-@media screen and (max-width: 600px) {
-  .topnav li.right, 
-  .topnav li {
-	  float: none;
-	  }
+.navbar-custom li.right a:hover:not(.active) {
+	background-color: #CB2131;
 }
 
 .csbuttons{
@@ -82,9 +71,15 @@ a {
     text-decoration:none !important;
 }
 
-h1,h2,h3{
+h2 {
+	font-family: 'Kaushan Script', cursive;
+	padding: 15px 15px;
+	}
+
+h1,h3{
     font-family: 'Kaushan Script', cursive;
-        }
+    }
+
 .myform {
 	position: relative;
 	display: -ms-flexbox;
