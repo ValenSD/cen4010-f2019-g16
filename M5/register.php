@@ -2,9 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 	<head>
-
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	  <meta name="description" content="">
@@ -19,11 +17,9 @@
 	  <link href="bootstrap/css/campussnapshot.css" rel="stylesheet">
 
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	</head>
-
 	<body>
-		<div class="jumbotron jumbotron-fluid" style="background: url('bootstrap/images/campus.jpg') no-repeat; background-size: cover; color: #ffffff;">
+		<div class="jumbotron jumbotron-fluid" style="background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(105,105,105,0.3)), url('bootstrap/images/campus.jpg') no-repeat; background-size: cover; color: #ffffff; margin-bottom: 0px; padding: 10px 0px 55px 0px;">
 			<div class="container" >
 				<h1 class="display-4">Welcome to Campus Snapshots</h1>
 			</div>
@@ -54,6 +50,8 @@
 					<div class="form-group">
 						<label>Password</label>
 						<input type="password" name="password1" id="password1"  class="form-control" placeholder="Enter Password">
+					</div>
+					<div class="form-group">
 						<input type="password" name="password2" id="password2"  class="form-control" placeholder="Confirm Password">
 					</div>
 					<div class="col-md-12 text-center ">
